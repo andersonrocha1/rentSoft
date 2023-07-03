@@ -2,7 +2,7 @@ package com.andersondev.rentSoft.enums;
 
 public enum TipoConta {
 	
-	AGUA("Agua"),
+	AGUA("Água"),
     ENERGIA("Energia");
 	
 	
