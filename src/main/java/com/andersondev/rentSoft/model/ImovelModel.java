@@ -9,14 +9,19 @@ import org.hibernate.annotations.Where;
 
 import com.andersondev.rentSoft.enums.Status;
 import com.andersondev.rentSoft.enums.converters.StatusConverter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,6 +35,9 @@ public class ImovelModel implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+	
+	
+	private String nome;
 
     private String endereco;
     
@@ -44,9 +52,30 @@ public class ImovelModel implements Serializable {
 	private Status status = Status.ACTIVE;
     
     
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "locatario_cod")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private LocatarioModel locatarioAluga;
+    
+    
     public ImovelModel() {
     	
     }
+    
+
+	public ImovelModel(Long id, String nome , String endereco, int numeroQuartos, BigDecimal precoAluguel, Status status,
+			LocatarioModel locatarioAluga) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.endereco = endereco;
+		this.numeroQuartos = numeroQuartos;
+		this.precoAluguel = precoAluguel;
+		this.status = status;
+		this.locatarioAluga = locatarioAluga;
+	}
+
+
 
 
 	public Long getId() {
@@ -56,6 +85,16 @@ public class ImovelModel implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	
+	public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 
@@ -97,6 +136,18 @@ public class ImovelModel implements Serializable {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+	
+
+	public LocatarioModel getLocatarioAluga() {
+		return locatarioAluga;
+	}
+
+
+	public void setLocatarioAluga(LocatarioModel locatarioAluga) {
+		this.locatarioAluga = locatarioAluga;
+	}
+
+
 
 
 	@Override
@@ -116,7 +167,15 @@ public class ImovelModel implements Serializable {
 		ImovelModel other = (ImovelModel) obj;
 		return Objects.equals(id, other.id) && status == other.status;
 	}
-   
-    
-    
+
+
+	@Override
+	public String toString() {
+		return "ImovelModel [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", numeroQuartos="
+				+ numeroQuartos + ", precoAluguel=" + precoAluguel + ", status=" + status + ", locatarioAluga="
+				+ locatarioAluga + "]";
+	}
+
+
+
 }

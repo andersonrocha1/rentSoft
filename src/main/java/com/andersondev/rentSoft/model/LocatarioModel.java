@@ -47,11 +47,15 @@ public class LocatarioModel implements Serializable {
 	@Column(length = 10, nullable = false)
 	@Convert(converter = StatusConverter.class)
 	private Status status = Status.ACTIVE;
+	
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "locatarioAluga")
+	private List<ImovelModel> imoveis = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "locatario")
 	private List<Conta> contas = new ArrayList<>();
 	
-	
+
 	public LocatarioModel() {
 		
 	}
@@ -105,11 +109,18 @@ public class LocatarioModel implements Serializable {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+	
+	
+	public List<ImovelModel> getImoveis(){
+		return imoveis;
+	}
 
 
 	public List<Conta> getContas() {
 		return contas;
 	}
+	
+	
 
 
 	@Override
@@ -133,11 +144,9 @@ public class LocatarioModel implements Serializable {
 
 	@Override
 	public String toString() {
-		return "LocatarioModel [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", status=" + status + ", contas="
-				+ contas + "]";
+		return "LocatarioModel [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", status=" + status + ", imoveis="
+				+ imoveis + ", contas=" + contas + "]";
 	}
 
-
-	
 
 }

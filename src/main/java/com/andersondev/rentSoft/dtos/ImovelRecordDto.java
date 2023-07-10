@@ -7,6 +7,12 @@ import jakarta.validation.constraints.NotNull;
 
 public record ImovelRecordDto(
 		
+		Long id,
+		
+		@NotNull
+		@NotBlank
+		String nome,
+		
 		@NotNull
 		@NotBlank
 		String endereco,

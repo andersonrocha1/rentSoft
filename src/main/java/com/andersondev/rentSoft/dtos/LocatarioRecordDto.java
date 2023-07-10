@@ -12,6 +12,8 @@ public record LocatarioRecordDto(
 		@NotBlank @NotNull String nome,
 
 		@NotBlank @NotNull String cpf,
+		
+		List<ImovelRecordDto> imoveis,
 
 		List<ContaRecordDto> contas
 

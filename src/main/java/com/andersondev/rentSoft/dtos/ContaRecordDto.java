@@ -19,8 +19,7 @@ public record ContaRecordDto(
 		
 		
 		
-		@Id
-	    @GeneratedValue(strategy = GenerationType.AUTO)
+		
 	    Long id,
 	    
 	    @NotNull @Length(max = 12) @Pattern(regexp = "Água|Energia")
