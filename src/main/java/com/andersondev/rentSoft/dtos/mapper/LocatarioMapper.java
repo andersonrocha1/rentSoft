@@ -3,12 +3,15 @@ package com.andersondev.rentSoft.dtos.mapper;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
 
 import com.andersondev.rentSoft.dtos.ContaRecordDto;
 import com.andersondev.rentSoft.dtos.ImovelRecordDto;
 import com.andersondev.rentSoft.dtos.LocatarioRecordDto;
 import com.andersondev.rentSoft.model.LocatarioModel;
 
+
+@Component
 public class LocatarioMapper {
 	
 	public LocatarioRecordDto toDto(LocatarioModel locatario) {

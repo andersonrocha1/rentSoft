@@ -9,7 +9,6 @@ import org.hibernate.annotations.Where;
 
 import com.andersondev.rentSoft.enums.Status;
 import com.andersondev.rentSoft.enums.converters.StatusConverter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.annotation.Nonnull;
@@ -42,6 +41,7 @@ public class ImovelModel implements Serializable {
     private String endereco;
     
     private int numeroQuartos;
+    
     
     private BigDecimal precoAluguel;
     

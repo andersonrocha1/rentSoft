@@ -26,11 +26,10 @@ public record ContaRecordDto(
 	    TipoConta tipoConta,
 	
 
-	    @NotNull
-	    @NotBlank
+	   
 	    BigDecimal valor,
 	    
-	    @Column(name = "vencimento")
+	    
 	    LocalDate dataVencimento
 		
 		) {

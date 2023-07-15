@@ -55,7 +55,6 @@ public class Conta implements Serializable {
 	private Status status = Status.ACTIVE;
 
     @NotNull
-    @NotBlank
     private BigDecimal valor;
     
     @Column(name = "vencimento")

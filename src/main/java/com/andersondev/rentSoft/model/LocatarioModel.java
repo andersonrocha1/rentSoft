@@ -15,6 +15,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -49,10 +50,10 @@ public class LocatarioModel implements Serializable {
 	private Status status = Status.ACTIVE;
 	
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "locatarioAluga")
+	@OneToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER, mappedBy = "locatarioAluga")
 	private List<ImovelModel> imoveis = new ArrayList<>();
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "locatario")
+	@OneToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER, mappedBy = "locatario")
 	private List<Conta> contas = new ArrayList<>();
 	
 
@@ -62,12 +63,15 @@ public class LocatarioModel implements Serializable {
 
 
 	public LocatarioModel(Long id, @NotBlank @NotNull String nome, @NotBlank @NotNull String cpf,
-			@NotNull Status status) {
+			@NotNull Status status, List<ImovelModel> imoveis, List<Conta> contas ) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.status = status;
+		this.imoveis = imoveis;
+		this.contas = contas;
+		
 	}
 
 
