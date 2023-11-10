@@ -9,9 +9,9 @@
 
 
 ##   Resumo do Projeto
-     ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
-     
-    <p align="center">
+   
+
+   
     
     O sistema Rest de gestão de aluguéis é uma solução completa e eficiente para gerenciar o processo de aluguel de imóveis. Ele foi desenvolvido com a divisão em camadas e a utilização de padrões como o Mapper e DTO, visando garantir a organização, a manutenibilidade e a escalabilidade do sistema.
 
@@ -24,7 +24,7 @@
     Em resumo, o sistema Rest de gestão de aluguéis, com sua divisão em camadas e a utilização dos padrões Mapper e DTO, oferece uma solução robusta e padronizada para o gerenciamento de aluguéis. Essas abordagens contribuem para a organização do código, a manutenibilidade do sistema e a segurança das informações.
     
     
-    </p>
+  
 
 ##   Tecnologias Utilizadas
 
