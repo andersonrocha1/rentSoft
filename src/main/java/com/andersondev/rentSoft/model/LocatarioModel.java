@@ -56,6 +56,9 @@ public class LocatarioModel implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER, mappedBy = "locatario")
 	private List<Conta> contas = new ArrayList<>();
 	
+	@OneToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER, mappedBy = "locatarioContrata")
+	private List<ContratoAluguel> contratos = new ArrayList<>();	
+	
 
 	public LocatarioModel() {
 		
@@ -63,7 +66,7 @@ public class LocatarioModel implements Serializable {
 
 
 	public LocatarioModel(Long id, @NotBlank @NotNull String nome, @NotBlank @NotNull String cpf,
-			@NotNull Status status, List<ImovelModel> imoveis, List<Conta> contas ) {
+			@NotNull Status status, List<ImovelModel> imoveis, List<Conta> contas, List<ContratoAluguel> contratos ) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -71,6 +74,7 @@ public class LocatarioModel implements Serializable {
 		this.status = status;
 		this.imoveis = imoveis;
 		this.contas = contas;
+		this.contratos = contratos;
 		
 	}
 
@@ -124,7 +128,27 @@ public class LocatarioModel implements Serializable {
 		return contas;
 	}
 	
+
+	public void setImoveis(List<ImovelModel> imoveis) {
+		this.imoveis = imoveis;
+	}
+
+
+	public void setContas(List<Conta> contas) {
+		this.contas = contas;
+	}
 	
+	
+
+
+	public List<ContratoAluguel> getContratos() {
+		return contratos;
+	}
+
+
+	public void setContratos(List<ContratoAluguel> contratos) {
+		this.contratos = contratos;
+	}
 
 
 	@Override
@@ -149,8 +173,9 @@ public class LocatarioModel implements Serializable {
 	@Override
 	public String toString() {
 		return "LocatarioModel [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", status=" + status + ", imoveis="
-				+ imoveis + ", contas=" + contas + "]";
+				+ imoveis + ", contas=" + contas + ", contratos=" + contratos + "]";
 	}
+
 
 
 }

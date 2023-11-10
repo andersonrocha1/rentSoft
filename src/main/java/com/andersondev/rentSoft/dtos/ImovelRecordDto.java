@@ -24,6 +24,8 @@ public record ImovelRecordDto(
 		@NotBlank
 		BigDecimal precoAluguel
 		
+		
+		
 		) {
 
 }

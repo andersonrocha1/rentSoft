@@ -1,24 +1,18 @@
 package com.andersondev.rentSoft.dtos;
 
-import java.util.List;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record LocatarioRecordDto(
+public record LocatarioImovelDto(
 
 		Long id,
 		
 		@NotBlank @NotNull String nome,
 
-		@NotBlank @NotNull String cpf,
-		
-		List<ImovelRecordDto> imoveis,
-
-		List<ContaRecordDto> contas,
-		
-		List<ContratoDto> contratos
+		@NotBlank @NotNull String cpf
 
 ) {
+	
+	
 
 }

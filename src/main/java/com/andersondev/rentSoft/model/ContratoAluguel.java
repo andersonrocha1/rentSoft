@@ -1,5 +1,7 @@
 package com.andersondev.rentSoft.model;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -24,8 +26,11 @@ import jakarta.validation.constraints.NotNull;
 @SQLDelete(sql = "UPDATE tb_courses SET status = 'Inativo' WHERE id = ? ")
 @Where(clause = "status = 'Ativo'")
 @Table(name="tb_contrato")
-public class ContratoAluguel {
-    @Id
+public class ContratoAluguel implements Serializable {
+   
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -46,7 +51,12 @@ public class ContratoAluguel {
     
     @ManyToOne
     @JoinColumn(name = "locatario_id")
-    private LocatarioModel locatario;
+    private LocatarioModel locatarioContrata;
+    
+    
+    private BigDecimal deposito;
+    
+    private BigDecimal valorMensal;
 
     
     public ContratoAluguel() {
@@ -55,14 +65,16 @@ public class ContratoAluguel {
 
 
 	public ContratoAluguel(Long id, ImovelModel imovel, LocalDate dataInicio, LocalDate dataFinal,
-			@NotNull Status status, LocatarioModel locatario) {
+			@NotNull Status status, LocatarioModel locatarioContrata, BigDecimal deposito, BigDecimal valorMensal ) {
 		super();
 		this.id = id;
 		this.imovel = imovel;
 		this.dataInicio = dataInicio;
 		this.dataFinal = dataFinal;
 		this.status = status;
-		this.locatario = locatario;
+		this.locatarioContrata = locatarioContrata;
+		this.deposito = deposito;
+		this.valorMensal = valorMensal;
 	}
 
 
@@ -116,13 +128,33 @@ public class ContratoAluguel {
 	}
 
 
-	public LocatarioModel getLocatario() {
-		return locatario;
+	public LocatarioModel getLocatarioContrata() {
+		return locatarioContrata;
 	}
 
 
-	public void setLocatario(LocatarioModel locatario) {
-		this.locatario = locatario;
+	public void setLocatarioContrata(LocatarioModel locatarioContrata) {
+		this.locatarioContrata = locatarioContrata;
+	}
+
+
+	public BigDecimal getDeposito() {
+		return deposito;
+	}
+
+
+	public void setDeposito(BigDecimal deposito) {
+		this.deposito = deposito;
+	}
+
+
+	public BigDecimal getValorMensal() {
+		return valorMensal;
+	}
+
+
+	public void setValorMensal(BigDecimal valorMensal) {
+		this.valorMensal = valorMensal;
 	}
 
 
@@ -148,9 +180,10 @@ public class ContratoAluguel {
 	@Override
 	public String toString() {
 		return "ContratoAluguel [id=" + id + ", imovel=" + imovel + ", dataInicio=" + dataInicio + ", dataFinal="
-				+ dataFinal + ", status=" + status + ", locatario=" + locatario + "]";
+				+ dataFinal + ", status=" + status + ", locatarioContrata=" + locatarioContrata + ", deposito=" + deposito
+				+ ", valorMensal=" + valorMensal + "]";
 	}
-    
-    
+
+
 	
 }

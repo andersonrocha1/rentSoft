@@ -14,61 +14,62 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.andersondev.rentSoft.dtos.ImovelRecordDto;
-import com.andersondev.rentSoft.services.ImovelService;
+import com.andersondev.rentSoft.dtos.ContratoDto;
+import com.andersondev.rentSoft.services.ContratoService;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
-
 @Validated
 @RestController
-@RequestMapping("/api/imoveis")
-public class ImovelController {
+@RequestMapping("/api/contratos")
+public class ContratoController {
 	
-	private final ImovelService imovelService;
+	private final ContratoService contratoService;
 
-	public ImovelController(ImovelService imovelService) {
+	public ContratoController(ContratoService contratoService) {
 		
-		this.imovelService = imovelService;
+		this.contratoService = contratoService;
 	}
 	
 	
 	@GetMapping
-	public List<ImovelRecordDto> list(){
+	public List<ContratoDto> list(){
 		
-		return imovelService.list();
+		return contratoService.list();
+		
 	}
-	
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public ImovelRecordDto create(@RequestBody @Valid ImovelRecordDto imovel) {
+	public ContratoDto create(@RequestBody @Valid ContratoDto contrato) {
 		
-		return imovelService.create(imovel);
-		
+		return contratoService.create(contrato);
 	}
 	
 	@GetMapping("/{id}")
-	public ImovelRecordDto findById(@PathVariable @NotNull @Positive Long id) {
+	public ContratoDto findById(@PathVariable @NotNull @Positive Long id) {
 		
-		return imovelService.findById(id);
+		return contratoService.findById(id);
+		
 	}
 	
 	@PutMapping("/{id}")
-	public ImovelRecordDto update(@PathVariable @NotNull @Positive Long id,
-			@RequestBody @Valid ImovelRecordDto imovel) {
+	public ContratoDto update(@PathVariable @NotNull @Positive Long id, @RequestBody @Valid ContratoDto contrato) {
 		
-		return imovelService.update(id, imovel);
+		return contratoService.update(id, contrato);
 		
 	}
+	
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable @NotNull @Positive Long id) {
 		
-		imovelService.delete(id);
+		contratoService.delete(id);
 	}
+	
+	
 
 }

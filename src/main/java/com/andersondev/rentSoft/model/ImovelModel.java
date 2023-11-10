@@ -22,6 +22,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @SQLDelete(sql = "UPDATE tb_courses SET status = 'Inativo' WHERE id = ? ")
@@ -32,7 +33,7 @@ public class ImovelModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	
 	
@@ -46,7 +47,7 @@ public class ImovelModel implements Serializable {
     private BigDecimal precoAluguel;
     
     
-    @Nonnull
+    @NotNull
 	@Column(length = 10, nullable = false)
 	@Convert(converter = StatusConverter.class)
 	private Status status = Status.ACTIVE;
@@ -56,6 +57,9 @@ public class ImovelModel implements Serializable {
     @JoinColumn(name = "locatario_cod")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private LocatarioModel locatarioAluga;
+    
+    
+    
     
     
     public ImovelModel() {
